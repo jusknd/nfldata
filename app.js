@@ -452,141 +452,122 @@ const data = [
 /**
  * 1. write a function that takes a conference as an argument and will filter through the objects and return all teams in the conference
  * 
- * func(conf) => [teams]
  */
-
-function filterTeamsByConference(teams, conference) {
-    return teams.filter(team=> team.conference === conference);
+let getTeamsByConference(teams, conference) {
+    return teams.filter(teams=> teams.conference === conference )
 }
-const teams = [
-    {name: 'Cowboys', conference: 'nfc'},
-    {name: 'Lions', conference: 'nfc'},
-    {name: 'Broncos', conference: 'afc'},
-    {name: 'Packers', conference: 'nfc'}
 
-
+const data = [
+    {name: 'cowboys', conference: 'nfc'},
+    {name: 'lions', conference: 'nfc'},
+    {name: 'broncos', conference: 'afc'},
+    {name: 'packers', conference: 'nfc'}
 ]
  
 
-/**
- * 2. write a function that takes a state as an argument and will filter through the objects and return all teams in that state.
- * 
+ /** 2. write a function that takes a state as an argument and will filter through the objects and return all teams in that state
  */
-
-function getTeamsByState4(teams, state) {
-    return teams.filter(team => team.state === state);
-
+let getTeamsByState(teams, state) {
+    return teams.filter(teams=> teams.state === state)
 }
-const teams = [
-    {name: "Cowboys", state: "Texas"},
-    {name: "Lions", state: "Michigan"},
-    {name: "Broncos", state: "Colorado"},
-    {name: "Packers", state: "Wisconsin"}
+
+const data = [
+    {name: 'cowboys', state: 'Texas'},
+    {name: 'lions', state: 'Michigan'},
+    {name: 'broncos', state: 'Colorado'},
+    {name: 'packers', state:'Wisconsin' }
 
 ]
 
 /**
- * 3. write a function that will map through the data and return an array of all teams by location and team.  ex ['arizona cardinals', 'atlanta falcons', etc]
+ * 3. write a function that will map through the data and return an array of all teams by location and team. ex ['arizona cardinals', 'atlanta falcons', etc]
+ */
+
+
+ /**
+  *  4. write a function that takes a conference and division as an argument and will filter through the data and return all teams from that conference and division *hint each one should have four teams*
+ */
+
+
+/**
+ * 5. write a function that will sort through the teams and place them in 
+ * either one of two arrays: hasWonASuperBowl or hasNotWonASuperBowl
+ */
+
+let hasWonASuperBowl = []
+let hasNotWonASuperBowl = []
+
+const sortTeams = ()=> {
+    
+
+    let hasWon = data.filter(team => team.superBowlWins > 0)
+    let hasNotWonASuperBowl = data.filter(team => team.superBowlWins == 0)
+
+    hasWonASuperBowl = hasWon.map(team => team.team)
+    hasNotWonASuperBowl = hasNotWonASuperBowl.map(team => team.team)
+}
+
+sortTeams()
+
+console.log(hasNotWonASuperBowl)
+console.log(hasWonASuperBowl)
+console.clear()
+
+/**
+ * 6. Make a cards for each team and display it on the browser. 
  * 
- */
-function getTeamsList(teams) {
-    return teams.map(team => `${team.state} ${team.name}`);
-}
-
-// Example usage:
-const teams = [
-    { name: "Cowboys", state: "Texas" },
-    { name: "Lions", state: "Michigan" },
-    { name: "Broncos", state: "Colorado" },
-    { name: "Packers", state: "Wisconsin" }
-]
-
-const teamList = getTeamsList(teams);
-console.log(teamList);
-
-/**
- * 4. write a function that takes a conference and division as an argument and will filter 
- * through the data and return all teams from that conference and division  
- *  **hint each one should have four teams
- */
-function getTeamsByConferenceAndDivision(teams, conference, division) {
-    return teams.filter(team => team.conference === conference && team.division === division);
-}
-
-// Example usage:
-const teams = [
-    { name: "Cowboys", state: "Texas", conference: "NFC", division: "East" },
-    { name: "Lions", state: "Michigan", conference: "NFC", division: "North" },
-    { name: "Broncos", state: "Colorado", conference: "AFC", division: "West" },
-    { name: "Packers", state: "Wisconsin", conference: "NFC", division: "North" }
-];
-
-const nfcNorthTeams = getTeamsByConferenceAndDivision(teams, "NFC", "North");
-console.log(nfcNorthTeams);
-
-
-/**
- * 5. write a function that will sort through the teams and place them in either 
- * one of two arrays: hasWonASuperBowl or hasNotWonASuperBowl
- */
-function sortTeamsBySuperBowlWin(teams) {
-    const hasWonASuperBowl = [];
-    const hasNotWonASuperBowl = [];
-
-    teams.forEach(team => {
-        if (team.hasWonSuperBowl) {
-            hasWonASuperBowl.push(team);
-        } else {
-            hasNotWonASuperBowl.push(team);
-        }
-    });
-
-    return { hasWonASuperBowl, hasNotWonASuperBowl };
-}
-
-// Example usage:
-const teams = [
-    { name: "Cowboys", state: "Texas", conference: "NFC", division: "East", hasWonSuperBowl: true },
-    { name: "Lions", state: "Michigan", conference: "NFC", division: "North", hasWonSuperBowl: false },
-    { name: "Broncos", state: "Colorado", conference: "AFC", division: "West", hasWonSuperBowl: true },
-    { name: "Packers", state: "Wisconsin", conference: "NFC", division: "North", hasWonSuperBowl: true }
-];
-
-const sortedTeams = sortTeamsBySuperBowlWin(teams);
-console.log(sortedTeams);
-
-/**
- * 6. Make a card for each team and display it on the browser
+ * The card should display:
+ *      team
+ *      location
+ *      city    
+ *      state
+ *      super bowl wins
  * 
+ * When a card is clicked, hover change display to notable players
  */
-function displayTeamCards(teams) {
-    const container = document.getElementById("teamContainer");
-    container.innerHTML = "";
 
-    teams.forEach(team => {
-        const card = document.createElement("div");
-        card.classList.add("team-card");
-        
-        card.innerHTML = `
-            <h2>${team.name}</h2>
-            <p>State: ${team.state}</p>
-            <p>Conference: ${team.conference}</p>
-            <p>Division: ${team.division}</p>
-            <p>Super Bowl Wins: ${team.hasWonSuperBowl ? "Yes" : "No"}</p>
-        `;
-        
-        container.appendChild(card);
-    });
-}
 
-// Example usage:
-const teams = [
-    { name: "Cowboys", state: "Texas", conference: "NFC", division: "East", hasWonSuperBowl: true },
-    { name: "Lions", state: "Michigan", conference: "NFC", division: "North", hasWonSuperBowl: false },
-    { name: "Broncos", state: "Colorado", conference: "AFC", division: "West", hasWonSuperBowl: true },
-    { name: "Packers", state: "Wisconsin", conference: "NFC", division: "North", hasWonSuperBowl: true }
-];
+const row = document.getElementById('cardRow')
 
-document.addEventListener("DOMContentLoaded", () => {
-    displayTeamCards(teams);
-});
+    data.forEach(obj => {
+
+        const column = document.createElement('div')
+        column.classList.add('col')
+    
+        const card = document.createElement('div')
+        card.classList.add('card', 'h-100')
+    
+        const cardBody = document.createElement('div')
+        cardBody.classList.add('card-body')
+    
+        const team = document.createElement('h2')
+        team.classList.add('card-title', 'text-capitalize', 'text-primary')
+        team.innerText = obj.team
+    
+        const location = document.createElement('p')
+        location.classList.add('card-text', 'text-capitalize', 'text-danger', 'fst-italic')
+        location.innerText = obj.location
+    
+        const city = document.createElement('p')
+        city.classList.add('card-text', 'text-capitalize', 'text-danger', 'fst-italic')
+        city.innerText = obj.city
+    
+        const state = document.createElement('p')
+        state.classList.add('card-text', 'text-capitalize', 'text-danger', 'fst-italic')
+        state.innerText = obj.state
+    
+        const superbowlwins = document.createElement('p')
+        superbowlwins.classList.add('card-text', 'text-capitalize', 'text-danger', 'fst-italic')
+        superbowlwins.innerText = obj.superBowlWins
+    
+        cardBody.appendChild(team)
+        cardBody.appendChild(location)
+        cardBody.appendChild(city)
+        cardBody.appendChild(state)
+        cardBody.appendChild(superbowlwins)
+    
+        column.appendChild(card)
+        card.appendChild(cardBody)
+    
+        row.appendChild(column)
+    })
