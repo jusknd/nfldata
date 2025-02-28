@@ -443,14 +443,14 @@ const data = [
         division: 'east',
         superBowlWins: 3,
         notablePlayers: {
-            past: 'darrell green',
+            past: 'Darrell Green',
             present: 'jayden daniels'
         }
     }
 ]
 
 /**
- * 1. write a function that takes a conference as an argument and will filter through the objects and return all teams in the conference
+ * 1. Write a function that takes a conference as an argument and will filter through the objects and return all teams in the conference
  * 
  * func(conf) => [teams]
  */
@@ -469,7 +469,7 @@ const teams = [
  
 
 /**
- * 2. write a function that takes a state as an argument and will filter through the objects and return all teams in that state.
+ * 2. Write a function that takes a state as an argument, filters through the objects, and returns all teams in that state.
  * 
  */
 
@@ -505,9 +505,9 @@ const teamList = getTeamsList(teams);
 console.log(teamList);
 
 /**
- * 4. write a function that takes a conference and division as an argument and will filter 
+ * 4. Write a function that takes a conference and division as an argument and will filter 
  * through the data and return all teams from that conference and division  
- *  **hint each one should have four teams
+ *  **hint each one should have four teams **
  */
 function getTeamsByConferenceAndDivision(teams, conference, division) {
     return teams.filter(team => team.conference === conference && team.division === division);
@@ -526,7 +526,7 @@ console.log(nfcNorthTeams);
 
 
 /**
- * 5. write a function that will sort through the teams and place them in either 
+ * 5. Write a function that will sort through the teams and place them in either 
  * one of two arrays: hasWonASuperBowl or hasNotWonASuperBowl
  */
 function sortTeamsBySuperBowlWin(teams) {
@@ -572,14 +572,14 @@ function displayTeamCards(teams) {
             <p>State: ${team.state}</p>
             <p>Conference: ${team.conference}</p>
             <p>Division: ${team.division}</p>
-            <p>Super Bowl Wins: ${team.hasWonSuperBowl ? "Yes" : "No"}</p>
+            <p>Super Bowl Wins: ${team.hasWonSuperBowl ? "Yes": "No"}</p>
         `;
         
         container.appendChild(card);
     });
 }
 
-// Example usage:
+
 const teams = [
     { name: "Cowboys", state: "Texas", conference: "NFC", division: "East", hasWonSuperBowl: true },
     { name: "Lions", state: "Michigan", conference: "NFC", division: "North", hasWonSuperBowl: false },
